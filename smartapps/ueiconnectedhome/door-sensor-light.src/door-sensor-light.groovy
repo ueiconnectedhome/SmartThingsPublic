@@ -40,8 +40,8 @@ def resp = []
 switches.each {
 resp << [name: it.displayName, value: it.currentValue("switch")]
 }
-//return resp
- render contentType: "application/javascript", data: "${params.callback}(${resp.encodeAsJSON()})"
+return resp
+//render contentType: "application/javascript", data: "${params.callback}(${resp.encodeAsJSON()})"
 
 }
 def listContactSensors() {
@@ -49,8 +49,8 @@ def resp = []
 contacts.each {
 resp << [name: it.displayName, value: it.currentValue("contact")]
 }
-//return resp
- render contentType: "application/javascript", data: "${params.callback}(${resp.encodeAsJSON()})"
+return resp
+//render contentType: "application/javascript", data: "${params.callback}(${resp.encodeAsJSON()})"
 }
 void updateSwitches() {
 // use the built-in request object to get the command parameter
