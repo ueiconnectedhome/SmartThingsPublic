@@ -10,7 +10,7 @@ iconX3Url: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience@
 oauth: [displayName: "web services tutorial ", displayLink: "http://localhost:4567"])
 preferences {
   section ("Allow external service to control these things...") {
-    input "switches", "capability.colorControl", multiple: true, required: true
+    input "switches", "capability.color Control", multiple: true, required: true
   }
   section("Monitor this door or window") {
     input "contacts", "capability.contactSensor"
@@ -69,7 +69,7 @@ void updateSwitches() {
   // use the built-in request object to get the command parameter
   def command = params.command
   //def value = [switch: "on", hue: 70, saturation: 100, level: 100, hex: "#C6A738" ]
-  def value= [level:100, hex:"#C6A738", saturation:56, hue:23, switch: "on"]
+  //def value= [level:100, hex:"#C6A738", saturation:56, hue:23, switch: "on"]
   //log.debug "setColor: ${value}, $this"
 
   if (command) {
