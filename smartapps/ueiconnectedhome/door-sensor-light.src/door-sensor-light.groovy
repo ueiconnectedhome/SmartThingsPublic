@@ -1,13 +1,15 @@
 definition(
-name: "door_sensor_light",
-namespace: "ueiconnectedhome",
-author: "Maryam",
-description: "Light Control with Sensor",
-category: "Convenience",
-iconUrl: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience.png",
-iconX2Url: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience@2x.png",
-iconX3Url: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience@2x.png",
-oauth: [displayName: "web services tutorial ", displayLink: "http://localhost:4567"])
+  name: "door_sensor_light",
+  namespace: "ueiconnectedhome",
+  author: "Maryam",
+  description: "Light Control with Sensor",
+  category: "Convenience",
+  iconUrl: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience.png",
+  iconX2Url: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience@2x.png",
+  iconX3Url: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience@2x.png",
+  oauth: [displayName: "web services tutorial ", displayLink: "http://localhost:4567"]
+)
+
 preferences {
 section ("Allow external service to control these things...") {
 input "switches", "capability.switch", multiple: true, required: true
@@ -78,10 +80,25 @@ switches.off() // Turn the bulb off when closed (this method does not come direc
 }
 }
 }
+
+def doorSensorHandler(evt) {
+
+  if("open" == "${evt.value}") {
+  
+    switches.on()
+    
+  } else {
+    
+    switches.off()
+  
+  }
+}
+
 def installed() {
+ log.debug "Installed with settings: ${settings}"
+ subscribe(contacts, "contact", doorSensorHandler )
 }
-def switchOnHandler(evt) {
-log.debug "switch turned on!"
-// call CCE.event
+
+def updated() {
+subscribe(contacts, "contact", doorSensorHandler )
 }
-def updated() {}
