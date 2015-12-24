@@ -50,6 +50,8 @@ return resp
 //render contentType: "application/javascript", data: "${params.callback}(${resp.encodeAsJSON()})"
 }
 
+// returns a list like
+// [[name: "Z-wave door sensor", value: "open"], [name: "livingroom door", value: "close"]]
 def listContactSensors() {
   def resp = []
   contacts.each {
@@ -110,6 +112,6 @@ def installed() {
 
 def updated() {
 
-subscribe(contacts, "contact", doorSensorHandler )
+  subscribe(contacts, "contact", doorSensorHandler )
 
 }
